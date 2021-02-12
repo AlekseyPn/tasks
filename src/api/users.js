@@ -6,7 +6,7 @@ export default class Users {
   }
 
   async login(user) {
-    const snapshot = await this.api.ref("testDb/users").once("value");
+    const snapshot = await this.api.ref("testDb/users").get();
     const users = Object.values(snapshot.toJSON());
     let loggedInUser = users.find((candidate) => {
         if (candidate.login === user.login && candidate.password === user.password) {
@@ -22,6 +22,7 @@ export default class Users {
   }
 
   async getById(id) {
-    return id;
+    const snapshot = await this.api.ref(`testDb/users/${id}`).get();
+    return snapshot.toJSON();
   }
 }
