@@ -1,6 +1,6 @@
 import {SESSION_TOKEN} from "@/const/user-consts";
 
-export default class Users {
+export default class User {
   constructor(api) {
     this.api = api;
   }
@@ -21,8 +21,12 @@ export default class Users {
       }
   }
 
-  async getById(id) {
-    const snapshot = await this.api.ref(`testDb/users/${id}`).get();
+  async getUserByToken(token) {
+    const snapshot = await this.api.ref(`testDb/users/${token}`).get();
     return snapshot.toJSON();
+  }
+
+  logout() {
+    localStorage.removeItem(SESSION_TOKEN);
   }
 }

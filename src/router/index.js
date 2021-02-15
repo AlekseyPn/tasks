@@ -1,5 +1,7 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
+import store from "@/store";
+import {user} from "@/store/store.namespaces";
 
 Vue.use(VueRouter);
 
@@ -13,6 +15,9 @@ const routes = [
     name: "task-board",
     path: "/task-board",
     component: () => import(/* webpackChunkName="Login" */ "@/views/Tasks"),
+    meta: {
+      requireAuth: true,
+    },
   },
 ];
 
@@ -22,6 +27,16 @@ const router = new VueRouter({
   routes,
 });
 
-router.beforeEach();
+router.beforeEach(async (to, from, next) => {
+  const sessionToken = store.state.user.sessionToken;
+  if (to.meta.requireAuth && !sessionToken) {
+    return next("/");
+  }
+  if (sessionToken && !store.state.user.user) {
+    await store.dispatch(`${user}/getUserByToken`, sessionToken);
+  }
+
+  next();
+});
 
 export default router;

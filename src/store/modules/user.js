@@ -1,13 +1,37 @@
 import {SESSION_TOKEN} from "@/const/user-consts";
+import api from "@/api";
 
 const state = {
   user: null,
-  isLoggedIn: !!localStorage.getItem(SESSION_TOKEN),
+  sessionToken: localStorage.getItem(SESSION_TOKEN),
 };
 
-const mutations = {};
+const mutations = {
+  setUser(state, user) {
+    state.user = user;
+  },
+  setToken(state, token) {
+    state.sessionToken = token;
+  },
+};
 
-const actions = {};
+const actions = {
+  async getUserByToken({commit}, token) {
+    const user = await api.user.getUserByToken(token);
+    commit("setUser", user);
+    return user;
+  },
+  async login({commit}, user) {
+    const loggedUser = await api.user.login(user);
+    commit("setUser", loggedUser);
+    commit("setToken", loggedUser.id);
+  },
+  logout({commit}) {
+    api.user.logout();
+    commit("setUser", null);
+    commit("setToken", null);
+  },
+};
 
 export default {
   namespaced: true,

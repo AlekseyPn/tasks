@@ -1,14 +1,14 @@
 import Vue from "vue";
 import Vuex from "vuex";
 
-import users from "modules/users";
-import tasks from "modules/tasks";
+import user from "./modules/user";
+import tasks from "./modules/tasks";
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
   modules: {
-    users,
+    user,
     tasks,
   },
 });

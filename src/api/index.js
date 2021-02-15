@@ -1,8 +1,8 @@
-import Users from "./users";
+import Users from "./user";
 import Tasks from "./tasks";
 import database from "@/config/firebase";
 
 export default {
-  users: new Users(database),
+  user: new Users(database),
   tasks: new Tasks(database),
 };
