@@ -2,10 +2,12 @@
   <div class="h-full flex justify-center items-center">
     <form class="flex flex-col mx-2 md:mx-0 p-4 rounded-xl bg-white relative w-full max-w-sm shadow" @submit.prevent="login">
       <div class="flex flex-col">
-        <label for="login" class="mt-1 text-gray-400">Логин</label>
-        <input id="login" v-model="loginVal" type="text" class="p-1 border rounded border-gray-400 mt-1 focus:border-blue-500 focus:outline-none">
-        <label for="password" class="mt-1 text-gray-400">Пароль</label>
-        <input id="password" v-model="passwordVal" type="password" class="p-1 border rounded border-gray-400 mt-1 focus:border-blue-500 focus:outline-none">
+        <form-input id="login" v-model="loginVal" class="mt-1">
+          Логин
+        </form-input>
+        <form-input id="password" v-model="passwordVal" type="password" class="mt-1">
+          Пароль
+        </form-input>
         <span v-show="errorMessage" class="text-red-500 text-sm mt-4">{{errorMessage}}</span>
       </div>
       <btn :disabled="pending" type="submit" class="self-center mt-9">Войти</btn>
@@ -15,7 +17,8 @@
 <script>
 import {user} from "@/store/store.namespaces";
 import {mapActions} from "vuex";
-import Btn from "@/components/ui/Btn";
+import Btn from "@/components/ui/buttons/Btn";
+import FormInput from "@/components/ui/forms/FormInput";
 
 const ErrorType = {
   NotEnoughLogin: "NotEnoughLogin",
@@ -33,6 +36,7 @@ export default {
   name: "Login",
   components: {
     Btn,
+    FormInput,
   },
   data() {
     return {

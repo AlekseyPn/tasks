@@ -19,7 +19,7 @@
 <script>
 import {mapActions, mapState} from "vuex";
 import {user} from "@/store/store.namespaces";
-import Btn from "@/components/ui/Btn";
+import Btn from "@/components/ui/buttons/Btn";
 
 export default {
   name: "App",

@@ -6,12 +6,9 @@
         <img src="@/assets/icons/close.svg" alt="Закрыть">
       </btn>
       <span class="mb-2 text-xl font-semibold">Создание новой задачи</span>
-      <label class="mt-1 text-gray-400" for="title">Заголовок(обязательное)</label>
-      <input id="title" v-model="task.title" autocomplete="off" class="p-1 border rounded border-gray-400 mt-1 focus:border-blue-500 focus:outline-none" type="text">
-      <label class="mt-1 text-gray-400" for="description">Описание</label>
-      <textarea id="description" v-model="task.description" class="p-1 border rounded border-gray-400 mt-1 focus:border-blue-500 focus:outline-none" name="description" cols="30" rows="5"></textarea>
-      <label class="mt-1 text-gray-400" for="date">Дата завершения</label>
-      <input id="date" v-model="task.finishDate" type="date" class="p-1 border rounded border-gray-400 mt-1 focus:border-blue-500 focus:outline-none">
+      <form-input id="title" v-model="task.title" class="mt-1" autocomplete="off" type="text">Заголовок(обязательное)</form-input>
+      <form-input id="description" v-model="task.description" class="mt-1" input-type="textarea" name="description">Описание</form-input>
+      <form-input id="date" v-model="task.finishDate" class="mt-1" type="date">Дата завершения</form-input>
       <span v-show="error" class="text-sm text-red-500">{{error}}</span>
       <btn class="mt-7" type="submit">Добавить</btn>
     </form>
@@ -19,12 +16,14 @@
 </template>
 
 <script>
-import Btn from "@/components/ui/Btn";
+import Btn from "@/components/ui/buttons/Btn";
+import FormInput from "@/components/ui/forms/FormInput";
 
 export default {
   name: "TaskCreateModal",
   components: {
     Btn,
+    FormInput,
   },
   data() {
     return {
