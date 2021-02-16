@@ -1,6 +1,7 @@
 <template>
   <div class="relative flex flex-col bg-white rounded-md p-4 pt-7 task">
     <span class="text-2xl font-semibold">{{task.title}}</span>
+    <span class="text-md mb-4 text-gray-400">Статус: {{task.complete ? "Выполнена" : "В процессе"}}</span>
     <span class="text-md mb-4">{{task.description}}</span>
     <div class="flex justify-between items-center mt-auto">
       <btn
@@ -8,7 +9,10 @@
       @click="$emit('toggle-task-complete', task)">
         {{task.complete ? 'Возобновить' : "Завершить"}}
       </btn>
-      <span v-if="daysToFinish" class="text-gray-500 text-sm">{{daysToFinishText}}</span>
+      <span v-if="daysToFinish && !task.complete" :class="{
+        'text-gray-500 text-sm': daysToFinish > 0,
+        'text-red-500 text-md': daysToFinish === 0
+      }">{{daysToFinishText}}</span>
     </div>
     <btn icon class="task__remove absolute top-1.5 right-1.5" @click="$emit('remove-task', task.id)"></btn>
   </div>

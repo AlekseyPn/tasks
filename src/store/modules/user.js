@@ -18,6 +18,9 @@ const mutations = {
 const actions = {
   async getUserByToken({commit}, token) {
     const user = await api.user.getUserByToken(token);
+    if (!user) {
+      throw "failed";
+    }
     commit("setUser", user);
     return user;
   },

@@ -33,7 +33,15 @@ router.beforeEach(async (to, from, next) => {
     return next("/");
   }
   if (sessionToken && !store.state.user.user) {
-    await store.dispatch(`${user}/getUserByToken`, sessionToken);
+    try {
+      await store.dispatch(`${user}/getUserByToken`, sessionToken);
+      if (to.name === "login") {
+        return next("/task-board");
+      }
+    } catch (e) {
+      store.dispatch(`${user}/logout`);
+      return next("/");
+    }
   }
 
   next();

@@ -1,20 +1,21 @@
 <template>
-  <div>
-    <form @submit.prevent="login">
-      <div>
-        <label for="login">Логин</label>
-        <input id="login" v-model="loginVal" type="text">
-        <label for="password">Пароль</label>
-        <input id="password" v-model="passwordVal" type="password">
-        <span v-show="errorMessage">{{errorMessage}}</span>
+  <div class="h-full flex justify-center items-center">
+    <form class="flex flex-col mx-2 md:mx-0 p-4 rounded-xl bg-white relative w-full max-w-sm shadow" @submit.prevent="login">
+      <div class="flex flex-col">
+        <label for="login" class="mt-1 text-gray-400">Логин</label>
+        <input id="login" v-model="loginVal" type="text" class="p-1 border rounded border-gray-400 mt-1 focus:border-blue-500 focus:outline-none">
+        <label for="password" class="mt-1 text-gray-400">Пароль</label>
+        <input id="password" v-model="passwordVal" type="password" class="p-1 border rounded border-gray-400 mt-1 focus:border-blue-500 focus:outline-none">
+        <span v-show="errorMessage" class="text-red-500 text-sm mt-4">{{errorMessage}}</span>
       </div>
-      <button :disabled="pending" type="submit">Войти</button>
+      <btn :disabled="pending" type="submit" class="self-center mt-9">Войти</btn>
     </form>
   </div>
 </template>
 <script>
 import {user} from "@/store/store.namespaces";
 import {mapActions} from "vuex";
+import Btn from "@/components/ui/Btn";
 
 const ErrorType = {
   NotEnoughLogin: "NotEnoughLogin",
@@ -30,6 +31,9 @@ const ERROR_MESSAGES = {
 
 export default {
   name: "Login",
+  components: {
+    Btn,
+  },
   data() {
     return {
       loginVal: "",
@@ -52,10 +56,12 @@ export default {
       this.errorType = "";
       if (!this.loginVal) {
         this.errorType = ErrorType.NotEnoughLogin;
+        this.pending = false;
         return;
       }
       if (!this.passwordVal) {
         this.errorType = ErrorType.NotEnoughLogin;
+        this.pending = false;
         return;
       }
       try {

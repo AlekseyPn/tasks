@@ -62,8 +62,9 @@ export default {
       this.$emit("close");
     },
     checkDate(date) {
-      const diff = new Date(date).getTime() - new Date().getTime();
-      return diff > 0;
+      const now = new Date().setHours(0,0,0,0);
+      const selectedDate = new Date(date);
+      return now <= selectedDate;
     },
   },
 };

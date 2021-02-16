@@ -9,16 +9,16 @@ export default class User {
     const snapshot = await this.api.ref("testDb/users").get();
     const users = Object.values(snapshot.toJSON());
     let loggedInUser = users.find((candidate) => {
-        if (candidate.login === user.login && candidate.password === user.password) {
-          localStorage.setItem(SESSION_TOKEN, candidate.id);
-          return candidate;
-        }
-      });
-      if (loggedInUser) {
-        return loggedInUser;
-      } else {
-        throw "failed";
+      if (candidate.login === user.login && candidate.password === user.password) {
+        localStorage.setItem(SESSION_TOKEN, candidate.id);
+        return candidate;
       }
+    });
+    if (loggedInUser) {
+      return loggedInUser;
+    } else {
+      throw "failed";
+    }
   }
 
   async getUserByToken(token) {

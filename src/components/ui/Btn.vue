@@ -4,6 +4,7 @@
           :class="{
             ['py-1 px-4 ']: !rounded && !icon,
             [`text-white rounded transition ${color}`]: !icon,
+            ['opacity-50 cursor-not-allowed pointer-events-none']: $attrs.disabled,
           }"
           v-on="$listeners">
     <slot></slot>
