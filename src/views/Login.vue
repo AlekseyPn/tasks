@@ -1,5 +1,5 @@
 <template>
-  <div class="h-full flex justify-center items-center">
+  <div class="h-full flex justify-center items-center flex-auto">
     <form class="flex flex-col mx-2 md:mx-0 p-4 rounded-xl bg-white relative w-full max-w-sm shadow" @submit.prevent="login">
       <div class="flex flex-col">
         <form-input id="login" v-model="loginVal" class="mt-1">
