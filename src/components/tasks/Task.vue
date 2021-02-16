@@ -1,16 +1,16 @@
 <template>
   <div class="relative flex flex-col bg-white rounded-md p-4 pt-7 task">
     <span class="text-xl md:text-2xl font-semibold">{{task.title}}</span>
-    <span class="text-sm md:text-md mb-1 text-gray-400">Статус: {{task.complete ? "Выполнена" : "В процессе"}}</span>
-    <span v-if="hasFinishDate && !task.complete" class="mb-4" :class="{
+    <span data-testid="status" class="text-sm md:text-md mb-1 text-gray-400">Статус: {{task.complete ? "Выполнена" : "В процессе"}}</span>
+    <span v-if="hasFinishDate && !task.complete" data-testid="finishDate" class="mb-4" :class="{
         'text-sm md:text-md text-gray-400': daysToFinish > 0,
         'text-red-500 text-md': daysToFinish === 0
       }">{{daysToFinishText}}</span>
     <p class="text-md mb-4 whitespace-pre-line break-words">{{task.description}}</p>
     <div class="flex justify-between items-center mt-auto">
       <btn
-      :color="task.complete ? 'bg-green-500 hover:bg-green-600' : 'bg-red-500 hover:bg-red-600'"
-      @click="$emit('toggle-task-complete', task)">
+        :color="task.complete ? 'bg-green-500 hover:bg-green-600' : 'bg-red-500 hover:bg-red-600'"
+        @click="$emit('toggle-task-complete', task)">
         {{task.complete ? 'Возобновить' : "Завершить"}}
       </btn>
     </div>
