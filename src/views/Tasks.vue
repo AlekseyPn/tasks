@@ -6,10 +6,11 @@
       <btn class="w-8 h-8 text-2xl rounded-full" rounded @click="createTaskFormVisible=true">+</btn>
     </div>
     <div class="p-4">
-      <h2 v-show="taskInProgress.length" class="font-semibold text-2xl">В процессе</h2>
+      <h2 v-show="taskInProgress.length" class="font-semibold text-2xl mb-4">В процессе</h2>
       <task-list :tasks="taskInProgress"
                  @remove-task="removeTaskHandler"
                  @toggle-task-complete="toggleTaskCompleteHandler"/>
+      <div class="border-t-2 border-gray-300 mt-8"></div>
       <h2 v-show="taskFinished.length" class="font-semibold text-2xl mb-4 mt-8">Завершенные</h2>
       <task-list :tasks="taskFinished"
                  @remove-task="removeTaskHandler"
