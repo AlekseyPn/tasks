@@ -45,7 +45,7 @@ export default {
     },
     daysToFinish() {
       if (!this.task.finishDate) return null;
-      const diff = Math.abs(new Date(this.task.finishDate).getTime() - new Date().getTime());
+      const diff = Math.abs(new Date(this.task.finishDate).setHours(0,0,0,0) - new Date().setHours(0,0,0,0));
       return Math.floor(diff / (3600 * 24 * 1000));
     },
     daysToFinishText() {
