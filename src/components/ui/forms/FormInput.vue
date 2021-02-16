@@ -30,7 +30,7 @@ export default {
       },
     },
     classes() {
-      return "p-1 border rounded border-gray-400 mt-1 focus:border-blue-500 focus:outline-none";
+      return "w-full p-1 border rounded border-gray-400 mt-1 focus:border-blue-500 focus:outline-none";
     },
   },
 };
