@@ -1,5 +1,5 @@
-# itquick_test
+# Tasks
 
-Тестовое задание с применением фреймворка Vuejs, tailwind.
+App for create todo tasks(Vuejs, tailwind)
 
-Реализован функционал авторизации, списка задач(создание, удаление, обновление статуса).
+App can create, update, and delete todo
